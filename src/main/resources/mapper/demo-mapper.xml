@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.jk.mapper.DemoMapper">
+
+    <select id="selectList" resultType="areaResponse">
+        SELECT id as "areaID",
+              areaname as "areaName"
+        from area
+    </select>
+
+    <insert id="doadd" parameterType="areaResponse">
+        INSERT INTO area(id,areaname) VALUES (#{areaID},#{areaName})
+    </insert>
+
+    <select id="update" parameterType="areaResponse" resultType="areaResponse">
+        select id as "areaID",
+              areaname as "areaName"
+        from area WHERE id = ${areaID}
+    </select>
+
+    <update id="doupdate" parameterType="areaResponse" >
+        UPDATE area SET areaname=#{areaName} WHERE id=${areaID}
+    </update>
+
+</mapper>   

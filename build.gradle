@@ -1,0 +1,56 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		//配置私服
+		maven {url "http://192.168.31.176:8081/nexus/content/groups/public/"}
+		//maven中央仓库
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	//配置私服
+	maven {url "http://192.168.31.176:8081/nexus/content/groups/public/"}
+	//maven中央仓库
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile ('org.springframework.boot:spring-boot-starter-freemarker')
+	//compile ('org.springframework.boot:spring-boot-starter-thymeleaf')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	//与数据库操作相关的依赖
+	compile "org.springframework.boot:spring-boot-starter-jdbc"
+	//MyBatis
+	compile "org.mybatis:mybatis:3.2.8"
+	//mybatis spring 插件
+	compile "org.mybatis:mybatis-spring:1.2.2"
+
+	//数据库驱动
+	compile "mysql:mysql-connector-java:5.1.23"
+	compile "com.jk.oracle:ojdbc14:1.1.14"
+
+	//连接池
+	compile "com.alibaba:druid:1.0.14"
+
+	//分页插件
+	compile group: 'com.github.pagehelper', name: 'pagehelper', version: '4.0.3'
+
+
+
+}
